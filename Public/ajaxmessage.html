@@ -1,0 +1,132 @@
+<!-- <!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <title>AJAX message</title>
+  </head>
+  <body>
+    <h2>Send a message!</h2> 
+    <p>This runs a Javascript-code which collects the data from the text fields and sends them to the back-end as AJAX-call.</p>
+
+    <form id="messageForm">
+      <div>
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required />
+      </div>
+      <div>
+        <label for="country">Country:</label>
+        <input type="text" id="country" name="country" required />
+      </div>
+      <div>
+        <label for="message">Message:</label>
+        <textarea id="message" name="message" required></textarea>
+      </div>
+      <button type="button" id="submitBtn">Submit</button>
+    </form>
+	<p id="error"></p>
+
+    <div id="ajaxmessages"></div>
+
+    <script src="client.js"></script>
+  </body>
+</html> -->
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Guestbook v. 2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  </head>
+
+
+  <body>
+    <div class="container-fluid" style="max-width: 1440px;">
+      <div class="row">
+        <div class="col-sm-12" id="header">
+          <nav class="navbar navbar-expand-lg navbar-light">
+            <a class="navbar-brand" href="#"><h4 id="home"onclick="window.location.href='index.html';">Guestbook</h4></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+
+            </li>
+            <li class="nav-item">
+                <button id="load-data" class="btn">Old messages</button>
+              </li>
+            <li class="nav-item">
+              <button id="load-data2" class="btn" onclick="window.location.href='newmessage.html';">New Message</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn" href="#" id="sendAjaxmessage">Ajax Message</button>
+              </li>
+              </ul>
+            </div>
+          </nav>
+          <div class="row" id="otsikko" style="max-width: 600px; margin: 0 auto;">
+            <div class="col-sm-12"><h1>Guestbook</h1> <h3>This is the tag line</h3></div>
+        </div>
+
+        </div>
+        
+      </div>
+    </div>
+    
+
+    <div class="container" style="max-width: 600px;" id="target">
+      <div class="row">
+        <div class="col-sm-12">
+
+            <h2>Send a message via Ajax call!</h2> 
+            <p>This runs a Javascript-code which collects the data from the text fields and sends them to the back-end as AJAX-call.</p>
+            <p id="error"></p>
+            <form id="messageForm">
+              <div>
+
+                <label for="username">Username:</label>
+                <input type="text" id="username" name="username" class="mfield" required />
+              </div>
+              <div>
+                <label for="country">Country:</label>
+                <input type="text" id="country" name="country" class="mfield" required />
+              </div>
+              <div>
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" class="mfield" required></textarea>
+            </div><br> 
+              <button type="button" id="submitBtn" class="btnGreenGo">Submit</button>
+            </form>
+           
+        
+            
+            
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-sm-12" id="here"><div id="ajaxmessages"><h5>Ajax messages will display here:</h5></div></div>
+
+  </body>
+  <script src="client.js"></script>
+
+</html>
+

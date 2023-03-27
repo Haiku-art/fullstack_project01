@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Guestbook v. 2</title>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- jQuery -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
+    <!-- Popper.js -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+
+    <!-- Bootstrap JS -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    
+
+    <link rel="stylesheet" href="/css/styles.css">
+    <link href='https://fonts.googleapis.com/css?family=Kanit' rel='stylesheet'>
+    <link href='https://fonts.googleapis.com/css?family=Montserrat' rel='stylesheet'>
+  </head>
+
+
+  <body>
+    <div class="container-fluid" style="max-width: 1440px;">
+      <div class="row">
+        <div class="col-sm-12" id="header">
+          <nav class="navbar navbar-expand-lg navbar-light" id="ee">
+            <a class="navbar-brand" href="#"><h4 id="home"onclick="window.location.href='index.html';">Guestbook</h4></a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+              <ul class="navbar-nav ml-auto">
+
+            </li>
+            <li class="nav-item">
+                <button id="load-data" class="btn">Old messages</button>
+              </li>
+            <li class="nav-item">
+              <button id="load-data2" class="btn" onclick="window.location.href='newmessage.html';">New Message</button>
+            </li>
+            <li class="nav-item">
+                <button class="btn" onclick="window.location.href='ajaxmessage.html';"id="sendAjaxmessage">Ajax Message</button>
+              </li>
+              </ul>
+            </div>
+          </nav>
+          <div class="row" id="otsikko" style="max-width: 600px; margin: 0 auto;">
+            <div class="col-sm-12"><h1>Guestbook</h1> <h3>This is the tag line</h3></div>
+        </div>
+
+        </div>
+        
+      </div>
+    </div>
+    
+
+    <div class="container" style="max-width: 600px;" id="target">
+      <div class="row">
+        <div class="col-sm-12">
+
+          <h2>Wellcome to the guestbook</h2>
+  <p>Welcome to my Node.js demo project "guestbook".</p><br>
+
+  
+  <div id="lista"><p><b>Quick links to routes:</b></p>
+  <ul>
+
+    <li id="frontpagelist"><a  href="/">/</a></li>
+
+    <li id="frontpagelist"><a  href="/guestbook">/guestbook</a></li>
+
+    <li id="frontpagelist"><a  href="/newmessage">/newmessage</a></li>
+
+    <li id="frontpagelist"><a  href="/ajaxmessage">/ajaxmessage</a></li>
+  </ul></div>
+
+<br><br>
+
+<p id="figmalinkki">In this project, I have utilized my Design System "Blueberry Lemonade"</p>
+<iframe id="figmalinkki" style="border: 1px solid rgba(0, 0, 0, 0.1);" width="600" height="450" src="https://www.figma.com/embed?embed_host=share&url=https%3A%2F%2Fwww.figma.com%2Ffile%2FKW0r7Uc4zBzXelk8mwoYXU%2FDesign-system%253A-Blueberry-lemonade%3Fnode-id%3D0%253A1%26t%3DcDD054FmaaTyYSR7-1" allowfullscreen></iframe>
+        </div>
+      </div>
+
+      
+
+      <div class="row">
+        <div class="col-sm-12" id="here"> </div>
+
+  </body>
+  <script src="client.js"></script>
+
+</html>
