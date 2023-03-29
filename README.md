@@ -1,4 +1,4 @@
-<h1>Node.js Demo Project "Guestbook"</h1>
+<h1>Node.js Demo Project "Guestbook" 😎 </h1>
 <p>This Node.js and Express project implements a simple messaging system using HTTP POST requests and/or Ajax calls. </p>
 <br>
 <hr>
