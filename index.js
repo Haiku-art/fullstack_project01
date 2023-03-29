@@ -18,7 +18,7 @@ app.use(
 // Reitti "/": hakee public kansiosta staattisen HTML-sivun
 //----------------------------------------------------------------------------------------------------------------------
 
-app.use(express.static("./public")); 
+app.use(express.static("./Public")); 
 
 //----------------------------------------------------------------------------------------------------------------------
 // guestbook -reitti, taulukon parsiminen ja tyylittely Pure.css:llä
@@ -177,7 +177,7 @@ app.get('/messages', (req, res) => {
 
 const path = require('path');
 
-app.get('/ajaxmessage', (req, res) => {
+app.get('./Public/ajaxmessage', (req, res) => {
   const filePath = path.join(__dirname, 'public', 'ajaxmessage.html');
   res.sendFile(filePath);
 });
