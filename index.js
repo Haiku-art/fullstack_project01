@@ -89,7 +89,7 @@ app.get('/guestbook', (req, res) => {
 //  app.post /newmessages -reitti tallentaa newmessage.html sivun formista tiedot json -fileen
 //----------------------------------------------------------------------------------------------------------------------
 
-app.get('/newmessage', (req, res) => {
+app.get('/newmessage', (req, res) => { //tämä versio toimii. 
   const filePath = path.join(__dirname, 'Public', 'newmessage.html');
   res.sendFile(filePath);
 });
@@ -123,104 +123,14 @@ app.post("/newmessage", function (req, res) {
       });
     }
     
-    //res.sendFile(__dirname + "./Public/newmessage.html");
     res.redirect('/newmessage');
     }); 
 
 
-  /*  
-  app.get('/newmessage', (req, res) => {
-  const filePath = path.join(__dirname, 'Public', 'newmessage.html');
-  res.sendFile(filePath);
-});
-
-app.post("/newmessage", function (req, res) {
-    var data = require("./data/messagedata.json");
-    
-    var newData = {
-      username: req.body.username,
-      country: req.body.usercountry,
-      message: req.body.usermessage,
-      date: new Date()
-    };
-    
-    // tarkistetaan, onko data originaalia
-    var originalData = data.some(function (item) {
-      return item.username === newData.username &&
-             item.country === newData.country &&
-             item.message === newData.message;
-    });
-    
-    if (!originalData) {//jos arvo on originaali, lisätään fileen. 
-      data.push(newData);
-    
-      var jsonStr = JSON.stringify(data);
-    
-      fs.writeFile("./data/messagedata.json", jsonStr, err => { 
-        if (err) throw err;
-      
-        
-      });
-    }
-    
-    // Redirect the user to the messages page
-    res.redirect('/messages');
-});
-
-app.get('/messages', (req, res) => {
-  const filePath = path.join(__dirname, 'Public', 'messages.html');
-  res.sendFile(filePath);
-});
-
-*/
-
-/* app.get('/newmessage', (req, res) => {
-  const filePath = path.join(__dirname, 'Public', 'newmessage.html');
-  res.sendFile(filePath);
-});
-
-app.post("/newmessage", function (req, res) {
-    var data = require("./data/messagedata.json");
-    
-    var newData = {
-      username: req.body.username,
-      country: req.body.usercountry,
-      message: req.body.usermessage,
-      date: new Date()
-    };
-    
-    // tarkistetaan, onko data originaalia
-    var originalData = data.some(function (item) {
-      return item.username === newData.username &&
-             item.country === newData.country &&
-             item.message === newData.message;
-    });
-    
-    if (!originalData) {//jos arvo on originaali, lisätään fileen. 
-      data.push(newData);
-    
-      var jsonStr = JSON.stringify(data);
-    
-      fs.writeFile("./data/messagedata.json", jsonStr, err => { 
-        if (err) throw err;
-      
-        
-      });
-    }
-    
-    // Redirect the user to the messages page res.redirect('/messages');
-    res.redirect('/newmessage');
-});
- */
 
 //----------------------------------------------------------------------------------------------------------------------
 //  messages -reitti hakee viestit ja lähettää paluuarvona taulukon, jota client -puolen javascript hyödyntää 
 //----------------------------------------------------------------------------------------------------------------------
-
-/* app.get('/messages', (req, res) => {
-  const filePath = path.join(__dirname, 'Public', 'messages.html');
-  res.sendFile(filePath);
-}); */
 
 
 app.get('/messages', (req, res) => {
@@ -265,59 +175,6 @@ app.get('/messages', (req, res) => {
   }); 
  
 
-//const path = require('path');
-/* 
-app.get('/messages', (req, res) => {
-  fs.readFile('./data/messagedata.json', 'utf8', (err, data) => {
-    if (err) {
-      console.error(err);
-      return res.status(500).send('Error reading messages file');
-    }
-    const messages = JSON.parse(data);
-    let table = '<table>'; // create an HTML table
-    table += '<tbody>';
-    messages.forEach(function(message) { // loop through messages
-      var dateString = message.date;
-      const date = new Date(dateString);
-      const year = date.getFullYear();
-      const month = date.getMonth() + 1;
-      const day = date.getDate();
-      const formattedDate = `${day.toString().padStart(2, '0')}.${month.toString().padStart(2, '0')}.${year}`;
-      table += '<tr>';
-      table += '<td>' + message.username + " from " + message.country + '</td>';
-      table += '<td id="userdate">' + formattedDate + '</td>';
-      table += '</tr>';
-      table += '<tr>';
-      table += '<td id="userMessage">' + message.message + '</td>';
-      table += '</tr>';
-    });
-    table += '</tbody>';
-    table += '</table>';
-
-    const html = `
-      <html>
-        <head>
-          <title>Messages</title>
-          <link rel="stylesheet" href="style.css">
-        </head>
-        <body>
-          <h1>Messages</h1>
-          ${table} // insert the HTML table into the HTML document
-        </body>
-      </html>
-    `;
-    
-    const filePath = path.join(__dirname, 'messages.html');
-    fs.writeFile(filePath, html, (err) => { // write the HTML to the file
-      if (err) {
-        console.error(err);
-        return res.status(500).send('Error writing messages file');
-      }
-      res.sendFile(filePath); // serve the HTML file as a response
-    });
-  });
-});
- */
 
 //----------------------------------------------------------------------------------------------------------------------
 // /ajaxmessage
