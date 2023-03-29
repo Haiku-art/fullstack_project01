@@ -177,13 +177,13 @@ app.get('/messages', (req, res) => {
 
 const path = require('path');
 
-app.get('./Public/ajaxmessage', (req, res) => {
-  const filePath = path.join(__dirname, 'public', 'ajaxmessage.html');
+app.get('/ajaxmessage', (req, res) => {
+  const filePath = path.join(__dirname, 'Public', 'ajaxmessage.html');
   res.sendFile(filePath);
 });
 
   
-app.post('./Public/ajaxmessage', function(req, res) {
+app.post('/ajaxmessage', function(req, res) {
 
     const username = req.body.username;
     const country = req.body.country;
