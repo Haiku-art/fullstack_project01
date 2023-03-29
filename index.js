@@ -89,7 +89,7 @@ app.get('/guestbook', (req, res) => {
 //  app.post /newmessages -reitti tallentaa newmessage.html sivun formista tiedot json -fileen
 //----------------------------------------------------------------------------------------------------------------------
 app.get('/newmessage', (req, res) => {
-  const filePath = path.join(__dirname, 'public', 'newmessage.html');
+  const filePath = path.join(__dirname, 'Public', 'newmessage.html');
   res.sendFile(filePath);
 });
 
