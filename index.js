@@ -122,7 +122,7 @@ app.post("/newmessage", function (req, res) {
       });
     }
     
-    res.sendFile(__dirname + "/public/newmessage.html");
+    res.sendFile(__dirname + "./Public/newmessage.html");
     });
 
 //----------------------------------------------------------------------------------------------------------------------
@@ -183,7 +183,7 @@ app.get('./Public/ajaxmessage', (req, res) => {
 });
 
   
-app.post('/ajaxmessage', function(req, res) {
+app.post('./Public/ajaxmessage', function(req, res) {
 
     const username = req.body.username;
     const country = req.body.country;
