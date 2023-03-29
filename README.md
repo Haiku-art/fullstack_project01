@@ -11,4 +11,6 @@
 <p>To start the project, run the following command:</p>
 <p style="background-color: "grey";><b>npm start</b><p>
 <hr>
-
+<h3> ✅ DEPLOYMENT</h3>
+<p>This project is deployed on Render.com:<p>
+<p><b>https://nodejs-demo-guestbook.onrender.com</b></p>
