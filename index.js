@@ -89,30 +89,22 @@ app.get('/guestbook', (req, res) => {
 //  app.post /newmessages -reitti tallentaa newmessage.html sivun formista tiedot json -fileen
 //----------------------------------------------------------------------------------------------------------------------
 
-app.get('/newmessage', (req, res) => { //tämä versio toimii. 
+app.get('/newmessage', (req, res) => { 
   const filePath = path.join(__dirname, 'Public', 'newmessage.html');
   res.sendFile(filePath);
 });
 
 app.post("/newmessage", function (req, res) {
-    var data = require("./data/messagedata.json");
+    var data = require("./data/messagedata.json"); //lukee JSON-tiedoston "messagedata.json" ja tallentaa sen sisällön muuttujaan "data".
     
-    var newData = {
+    var newData = { // uusi objekti, johon tallennetaan pyynnön body:stä saatavat tiedot 
       username: req.body.username,
       country: req.body.usercountry,
       message: req.body.usermessage,
       date: new Date()
     };
-    
-    // tarkistetaan, onko data originaalia
-    var originalData = data.some(function (item) {
-      return item.username === newData.username &&
-             item.country === newData.country &&
-             item.message === newData.message;
-    });
-    
-    if (!originalData) {//jos arvo on originaali, lisätään fileen. 
-      data.push(newData);
+
+     data.push(newData); //lisää "newData"-objektin "data"-muuttujaan käyttäen push-funktiota
     
       var jsonStr = JSON.stringify(data);
     
@@ -121,12 +113,9 @@ app.post("/newmessage", function (req, res) {
       
         
       });
-    }
     
-    res.redirect('/newmessage');
+    res.redirect('/newmessage'); // viestin lähetyksen jälkeen avaa newmessage -reitin uudelleen
     }); 
-
-
 
 //----------------------------------------------------------------------------------------------------------------------
 //  messages -reitti hakee viestit ja lähettää paluuarvona taulukon, jota client -puolen javascript hyödyntää 
@@ -138,15 +127,15 @@ app.get('/messages', (req, res) => {
     fs.readFile('./data/messagedata.json', 'utf8', (err, data) => {
       if (err) {
         console.error(err);
-        return res.status(500).send('Error reading messages file');
+        return res.status(500).send('Error reading messages file'); // virheidenkäsittely. Lähde: https://expressjs.com/en/guide/error-handling.html
       }
       
-      const messages = JSON.parse(data);
+      const messages = JSON.parse(data); // käyttää sama json-fileä kuin /newmessage -reitti
         let table = '<p>You can find the pure.css /guestbook route <a id="textLink" href="/guestbook">here</a> <table>'; //luodaan html -taulukko
   
         table += '<tbody>';
     
-        messages.forEach(function(message) { // viestit käydään läpi
+        messages.forEach(function(message) { // viestit käydään läpi forEach funktiolla: forEach suorittaa toiminnon jokaiselle taulukon elementille.
   
           var dateString = message.date; // huolitellaan päivämäärä esityskelpoisempaan muotoon
           const date = new Date(dateString);
@@ -175,7 +164,6 @@ app.get('/messages', (req, res) => {
   }); 
  
 
-
 //----------------------------------------------------------------------------------------------------------------------
 // /ajaxmessage
 //----------------------------------------------------------------------------------------------------------------------
@@ -194,7 +182,7 @@ app.post('/ajaxmessage', function(req, res) {
     const country = req.body.country;
     const message = req.body.message;
   
-    const data = {
+    const ajaxmessagedata = { //ajaxviestit
       username: username,
       country: country,
       message: message
@@ -206,7 +194,7 @@ app.post('/ajaxmessage', function(req, res) {
         res.status(500).send('Internal server error');
       } else {
         let messages = JSON.parse(content.toString());
-        messages.push(data);
+        messages.push(ajaxmessagedata);
   
         fs.writeFile(path.join(__dirname, './data/data.json'), JSON.stringify(messages), function(err) {
           if (err) {
@@ -224,6 +212,7 @@ app.post('/ajaxmessage', function(req, res) {
 //----------------------------------------------------------------------------------------------------------------------
 // Portti
 //----------------------------------------------------------------------------------------------------------------------
+
 app.listen(port, function() {
   console.log(`Server running on http://localhost:${port}`);
 });

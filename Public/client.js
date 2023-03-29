@@ -2,13 +2,16 @@
 const messages = document.getElementById("target"); 
 document.getElementById('load-data').addEventListener('click', loadGuestbookData);
 
-function loadGuestbookData() {
+// ------------------------------------------------------------------------------------------------------
+// vieraskirjan viestit / messages.html:
+// ------------------------------------------------------------------------------------------------------
+
+function loadGuestbookData() { //message.html kutsuu tätä, kun body -osio ladataan
 
     const xhttp = new XMLHttpRequest(); // luodaan XMLHttpRequest olio
     xhttp.onreadystatechange = function() {
       if (this.readyState == 4 && this.status == 200) {
         messages.innerHTML = this.responseText; // vastauksena saatava HTML table asetetaan div -elementtiin. Lähde: https://www.w3schools.com/xml/ajax_xmlhttprequest_response.asp
-        
       }
     };
     xhttp.open("GET", "/messages", true);  
@@ -16,18 +19,14 @@ function loadGuestbookData() {
 
     } 
 
+// ------------------------------------------------------------------------------------------------------
 // ajaxmessage:
-
-
-//const messageForm = document.getElementById('message-form');
+// ------------------------------------------------------------------------------------------------------
 
 let element = document.getElementById('submitBtn');
 if (element) {
   element.addEventListener('click', newAjaxmessage)
 }
-
-
-//document.getElementById('submitBtn').addEventListener('click', newAjaxmessage); 
 
 function newAjaxmessage() {
   
@@ -68,10 +67,7 @@ function newAjaxmessage() {
         document.getElementById('username').value = ''; // tyhjennetään kentät
         document.getElementById('country').value = '';
         document.getElementById('message').value = '';
-  
-  ;
     }
-  
   };
   
   function checkInputs() {
@@ -87,7 +83,7 @@ function newAjaxmessage() {
     for (let i = 0; i < inputElements.length; i++) {
       const inputElement = inputElements[i];
       
-      if (!inputElement.value) { // Check if the input field is empty
+      if (!inputElement.value) { // Tyhjien kenttien tarkistus
         inputElement.style.borderColor = 'rgb(255, 115, 138)';
         isValid = false;
       } else {
