@@ -4,7 +4,7 @@ const bodyParser = require("body-parser"); // haetaan body-parser moduuli JSON -
 //const pure = require('purecss'); //pure.css
 
 const app = express(); // funktio tallennetaan muuttujaan app
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 3000; // portti Render.com julkaisua varten
 
 app.use(express.json());
   
