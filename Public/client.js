@@ -70,7 +70,7 @@ function newAjaxmessage() {
     }
   };
   
-  function checkInputs() {
+  /* function checkInputs() {
   
     const inputElements = [
       document.getElementById('username'),
@@ -98,5 +98,35 @@ function newAjaxmessage() {
     }
     
     return isValid; //jos kenttien tarkistus menee läpi, palautetaan arvo "true"
+  }
+   */
+
+  function checkInputs() {
+    const inputElements = [
+      document.getElementById('username'),
+      document.getElementById('country'),
+      document.getElementById('message')
+    ];
+    
+    let isValid = true;
+  
+    for (let i = 0; i < inputElements.length; i++) {
+      const inputElement = inputElements[i];
+      
+      if (!inputElement.value.trim()) { // Tyhjien ja pelkkien välilyöntien tarkistus
+        inputElement.style.borderColor = 'rgb(255, 115, 138)';
+        isValid = false;
+      } else {
+        inputElement.style.borderColor = 'black';
+      }
+    }
+    
+    if (!isValid) {
+      document.getElementById('error').innerHTML = "Please fill in all the fields";
+    } else {
+      document.getElementById('error').innerHTML = "";
+    }
+    
+    return isValid;
   }
   
