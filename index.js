@@ -1,9 +1,11 @@
 const express = require('express'); // ladataan moduuli
+
 const fs = require('fs');
+
 const bodyParser = require("body-parser"); // haetaan body-parser moduuli JSON -tiedostojen lukua varten.
-//const pure = require('purecss'); //pure.css
 
 const app = express(); // funktio tallennetaan muuttujaan app
+
 const port = process.env.PORT || 3000; // process.env -portti Render.com julkaisua varten
 
 app.use(express.json());
@@ -29,7 +31,7 @@ app.get('/guestbook', (req, res) => {
     fs.readFile('./data/messagedata.json', 'utf8', (err, data) => {
       if (err) {
         console.error(err);
-        return res.status(500).send('Error reading messages file');
+        return res.status(500).send('Error reading messages file'); // virheidenkäsittely. Lähde: https://expressjs.com/en/guide/error-handling.html
       }
       
       const messages = JSON.parse(data); //taulukon parsiminen ja tyylittely Pure.css:llä: https://purecss.io/tables/
@@ -60,7 +62,7 @@ app.get('/guestbook', (req, res) => {
         table += '<tbody>';
         table += '<thead style="background-color: #E6F285"><tr><th>Date</th><th>Name</th><th>Message</th></tr></thead>';
     
-        messages.forEach(function(message) { // viestit käydään läpi
+        messages.forEach(function(message) { // viestit käydään läpi forEach -funktiolla. forEach suorittaa toiminnon (table -muotoilun) jokaiselle taulukon elementille.
   
           var dateString = message.date; // huolitellaan päivämäärä esityskelpoisempaan muotoon
           const date = new Date(dateString);
@@ -68,7 +70,7 @@ app.get('/guestbook', (req, res) => {
           const year = date.getFullYear();
           const month = date.getMonth() + 1; // lisätään 1 kuukausiin, koska tammikuu on 0
           const day = date.getDate();
-          const formattedDate = `${day.toString().padStart(2, '0')}.${month.toString().padStart(2, '0')}.${year}`;
+          const formattedDate = `${day.toString().padStart(2, '0')}.${month.toString().padStart(2, '0')}.${year}`; //padStart() -metodilla merkkijon on aina vähintään 2 merkkiä pitkä, eli lisätään 0, jos sitä päivämäärämuotoilussa tarvitaan
           
           table += '<tr>';
           table += '<td>'+ formattedDate + '</td>';
@@ -80,7 +82,7 @@ app.get('/guestbook', (req, res) => {
         table += '</tbody>';
         table += '</table>';
         
-        res.send(base + table + baseEnd); 
+        res.send(base + table + baseEnd); // Vastaus = html-sivun alku + taulukko + html-sivun lopputagit. 
       });
   });
   
@@ -90,7 +92,7 @@ app.get('/guestbook', (req, res) => {
 //----------------------------------------------------------------------------------------------------------------------
 
 app.get('/newmessage', (req, res) => { 
-  const filePath = path.join(__dirname, 'Public', 'newmessage.html');
+  const filePath = path.join(__dirname, 'Public', 'newmessage.html'); //path.join metodi, lähde: https://www.w3schools.com/nodejs/met_path_join.asp
   res.sendFile(filePath);
 });
 
@@ -107,12 +109,12 @@ app.post("/newmessage", function (req, res) {
      data.push(newData); //lisää "newData"-objektin "data"-muuttujaan käyttäen push-funktiota
     
       var jsonStr = JSON.stringify(data);
-    
-      fs.writeFile("./data/messagedata.json", jsonStr, err => { 
-        if (err) throw err;
-      
+
+      try {
+        fs.writeFileSync('./data/messagedata.json', jsonStr); //Tiedostoon kirjoitus
+      } catch (err) { // virheidenkäsittely
         
-      });
+      }
     
     res.redirect('/newmessage'); // viestin lähetyksen jälkeen avaa newmessage -reitin uudelleen
     }); 
@@ -127,7 +129,7 @@ app.get('/messages', (req, res) => {
     fs.readFile('./data/messagedata.json', 'utf8', (err, data) => {
       if (err) {
         console.error(err);
-        return res.status(500).send('Error reading messages file'); // virheidenkäsittely. Lähde: https://expressjs.com/en/guide/error-handling.html
+        return res.status(500).send('Error reading the messagedata file'); // virheidenkäsittely. Lähde: https://expressjs.com/en/guide/error-handling.html
       }
       
       const messages = JSON.parse(data); // käyttää sama json-fileä kuin /newmessage -reitti
@@ -191,22 +193,22 @@ app.post('/ajaxmessage', function(req, res) {
     fs.readFile(path.join(__dirname, './data/data.json'), function(err, content) {
       if (err) {
         console.error(err);
-        res.status(500).send('Internal server error');
-      } else {
-        let messages = JSON.parse(content.toString());
-        messages.push(ajaxmessagedata);
+        res.status(500).send('Internal server error'); //virheidenkäsittely. Lähde: https://expressjs.com/en/guide/error-handling.html
+                } else {
+                  let messages = JSON.parse(content.toString());
+                  messages.push(ajaxmessagedata);
   
-        fs.writeFile(path.join(__dirname, './data/data.json'), JSON.stringify(messages), function(err) {
-          if (err) {
-            console.error(err);
+    fs.writeFile(path.join(__dirname, './data/data.json'), JSON.stringify(messages), function(err) {
+      if (err) {
+          console.error(err);
             res.status(500).send('Internal server error');
-          } else {
-            res.json(messages);
-          }
+                    } else {
+                      res.json(messages);
+                    }
         });
       }
     });
-  });
+  }); 
 
 
 //----------------------------------------------------------------------------------------------------------------------

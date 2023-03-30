@@ -25,7 +25,7 @@ function loadGuestbookData() { //message.html kutsuu tätä, kun body -osio lada
 
 let element = document.getElementById('submitBtn');
 if (element) {
-  element.addEventListener('click', newAjaxmessage)
+  element.addEventListener('click', newAjaxmessage) // jos muuttujaan tallennettu elementti löytyy DOM-rakenteesta, suoritetaan if-lause, eli lisätään kuultelija 
 }
 
 function newAjaxmessage() {
@@ -97,6 +97,6 @@ function newAjaxmessage() {
       document.getElementById('error').innerHTML = "";
     }
     
-    return isValid;
+    return isValid; //jos kenttien tarkistus menee läpi, palautetaan arvo "true"
   }
   
