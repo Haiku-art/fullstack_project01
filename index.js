@@ -193,7 +193,7 @@ app.post('/ajaxmessage', function(req, res) {
     fs.readFile(path.join(__dirname, './data/data.json'), function(err, content) {
       if (err) {
         console.error(err);
-        res.status(500).send('Internal server error'); //virheidenkäsittely. Lähde: https://expressjs.com/en/guide/error-handling.html
+        res.status(500).send('Internal server error'); //virheidenkäsittely, Lähde: https://expressjs.com/en/guide/error-handling.html
                 } else {
                   let messages = JSON.parse(content.toString());
                   messages.push(ajaxmessagedata);
